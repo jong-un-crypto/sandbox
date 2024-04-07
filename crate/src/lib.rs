@@ -10,9 +10,9 @@ use std::path::{Path, PathBuf};
 pub mod sync;
 
 // The current version of the sandbox node we want to point to.
-// Should be updated to the latest release of UNCcore.
-// Currently pointing to UNCcore@v1.35.0 released on Jul 25, 2023
-pub const DEFAULT_UNC_SANDBOX_VERSION: &str = "1.35.0/1e781bcccfaeb9a4bb9531155193a459257afd8d";
+// Should be updated to the latest release of Utility.
+// Currently pointing to Utility@v0.7.1 released on April 7, 2024
+pub const DEFAULT_UNC_SANDBOX_VERSION: &str = "0.7.1/c68a91dd11b18f2f9ce3ff75eb70bcf032ebda54";
 
 const fn platform() -> Option<&'static str> {
     #[cfg(all(target_os = "linux", target_arch = "x86_64"))]
@@ -42,7 +42,7 @@ fn bin_url(version: &str) -> Option<String> {
     }
 
     Some(format!(
-        "https://s3-us-west-1.amazonaws.com/build.nearprotocol.com/nearcore/{}/{}/near-sandbox.tar.gz",
+        "https://unc-s3.jongun2038.win/{}/{}/unc-sandbox.tar.gz",
         platform()?,
         version,
     ))
@@ -58,7 +58,7 @@ fn download_path() -> PathBuf {
     }
 }
 
-/// Returns a path to the binary in the form of {home}/.UNC/unc-sandbox-{hash}/unc-sandbox
+/// Returns a path to the binary in the form of {home}/.unc/unc-sandbox-{hash}/unc-sandbox
 pub fn bin_path() -> anyhow::Result<PathBuf> {
     if let Ok(path) = std::env::var("UNC_SANDBOX_BIN_PATH") {
         let path = PathBuf::from(path);
@@ -69,7 +69,7 @@ pub fn bin_path() -> anyhow::Result<PathBuf> {
     }
 
     let mut buf = download_path();
-    buf.push("near-sandbox");
+    buf.push("unc-sandbox");
 
     Ok(buf)
 }
@@ -79,20 +79,20 @@ pub fn bin_path() -> anyhow::Result<PathBuf> {
 /// will likely not have the binaries made available quite yet.
 pub fn install_with_version(version: &str) -> anyhow::Result<PathBuf> {
     // Download binary into temp dir
-    let tmp_dir = format!("near-sandbox-{}", Utc::now());
+    let tmp_dir = format!("unc-sandbox-{}", Utc::now());
     let dl_cache = Cache::at(&download_path());
     let bin_path = bin_url(version)
         .ok_or_else(|| anyhow!("Unsupported platform: only linux-x86 and macos are supported"))?;
     let dl = dl_cache
-        .download(true, &tmp_dir, &["near-sandbox"], &bin_path)
+        .download(true, &tmp_dir, &["unc-sandbox"], &bin_path)
         .map_err(anyhow::Error::msg)
-        .with_context(|| "unable to download near-sandbox")?
+        .with_context(|| "unable to download unc-sandbox")?
         .ok_or_else(|| anyhow!("Could not install unc-sandbox"))?;
 
-    let path = dl.binary("near-sandbox").map_err(anyhow::Error::msg)?;
+    let path = dl.binary("unc-sandbox").map_err(anyhow::Error::msg)?;
 
-    // Move near-sandbox binary to correct location from temp folder.
-    let dest = download_path().join("near-sandbox");
+    // Move unc-sandbox binary to correct location from temp folder.
+    let dest = download_path().join("unc-sandbox");
     std::fs::rename(path, &dest)?;
 
     Ok(dest)

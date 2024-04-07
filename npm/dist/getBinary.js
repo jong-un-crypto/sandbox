@@ -17,10 +17,10 @@ function getPlatform() {
 }
 function AWSUrl() {
     const [platform, arch] = getPlatform();
-    return `https://s3-us-west-1.amazonaws.com/build.nearprotocol.com/nearcore/${platform}-${arch}/1.35.0/1e781bcccfaeb9a4bb9531155193a459257afd8d/near-sandbox.tar.gz`;
+    return `https://s3-us-west-1.amazonaws.com/build.nearprotocol.com/nearcore/${platform}-${arch}/1.35.0/1e781bcccfaeb9a4bb9531155193a459257afd8d/unc-sandbox.tar.gz`;
 }
 exports.AWSUrl = AWSUrl;
-function getBinary(name = "near-sandbox") {
+function getBinary(name = "unc-sandbox") {
     if (!process.env["UNC_SANDBOX_BIN_PATH"]) {
         process.env["UNC_SANDBOX_BINARY_PATH"] = (0, path_1.join)(os.homedir(), ".unc", "sandbox");
     }

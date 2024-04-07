@@ -1,9 +1,9 @@
 [package]
 name = "unc-sandbox-utils"
-version = "0.3.0"
+version = "0.7.0"
 edition = "2018"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/unc/sandbox"
+repository = "https://github.com/utility/sandbox"
 description = """
 Utility library for launching unc sandbox environments.
 """
