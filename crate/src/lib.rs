@@ -11,8 +11,8 @@ pub mod sync;
 
 // The current version of the sandbox node we want to point to.
 // Should be updated to the latest release of Utility.
-// Currently pointing to Utility@v0.7.1 released on April 7, 2024
-pub const DEFAULT_UNC_SANDBOX_VERSION: &str = "0.7.1/c68a91dd11b18f2f9ce3ff75eb70bcf032ebda54";
+// Currently pointing to Utility@v0.7.2 released on April 9, 2024
+pub const DEFAULT_UNC_SANDBOX_VERSION: &str = "0.7.2/6e7f0ea83cee07c24683f2b8196abb2717d47532";
 
 const fn platform() -> Option<&'static str> {
     #[cfg(all(target_os = "linux", target_arch = "x86_64"))]
