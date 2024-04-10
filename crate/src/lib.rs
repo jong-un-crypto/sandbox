@@ -42,7 +42,7 @@ fn bin_url(version: &str) -> Option<String> {
     }
 
     Some(format!(
-        "https://unc-s3.jongun2038.win/{}/{}/unc-sandbox.tar.gz",
+        "https://unc-s3.jongun2038.win/{}/{}/uncd-sandbox.tar.gz",
         platform()?,
         version,
     ))
