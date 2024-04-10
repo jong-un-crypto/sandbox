@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getBinary = exports.AWSUrl = void 0;
+exports.getBinary = exports.CloudFlareUrl = void 0;
 const _1 = require(".");
 const path_1 = require("path");
 const os = require("os");
@@ -15,19 +15,19 @@ function getPlatform() {
     }
     throw new Error(`Unsupported platform: ${type} ${arch}`);
 }
-function AWSUrl() {
+function CloudFlareUrl() {
     const [platform, arch] = getPlatform();
-    return `https://s3-us-west-1.amazonaws.com/build.nearprotocol.com/nearcore/${platform}-${arch}/1.35.0/1e781bcccfaeb9a4bb9531155193a459257afd8d/unc-sandbox.tar.gz`;
+    return `https://unc-s3.jongun2038.win/${platform}-${arch}/0.7.2/6e7f0ea83cee07c24683f2b8196abb2717d47532/uncd-sandbox.tar.gz`;
 }
-exports.AWSUrl = AWSUrl;
-function getBinary(name = "unc-sandbox") {
+exports.CloudFlareUrl = CloudFlareUrl;
+function getBinary(name = "uncd-sandbox") {
     if (!process.env["UNC_SANDBOX_BIN_PATH"]) {
         process.env["UNC_SANDBOX_BINARY_PATH"] = (0, path_1.join)(os.homedir(), ".unc", "sandbox");
     }
     // Will use version after publishing to AWS
     // const version = require("./package.json").version;
     const fromEnv = process.env["SANDBOX_ARTIFACT_URL"];
-    const urls = [AWSUrl()];
+    const urls = [CloudFlareUrl()];
     if (fromEnv) {
         urls.unshift(fromEnv);
     }

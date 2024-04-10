@@ -12,7 +12,7 @@ If you just want to run tests against a UNC Sandbox instance, check out [UNC-wor
 - [JavaScript](https://github.com/UNC/workspaces-js)
 - [Rust](https://github.com/UNC/workspaces-rs)
 
-Tip: `UNC-runner` includes `unc-sandbox` as a dependency, so you will not need to install or run `unc-sandbox` on its own.
+Tip: `unc-runner` includes `uncd-sandbox` as a dependency, so you will not need to install or run `uncd-sandbox` on its own.
 
 If you want to run UNC Sandbox on its own, continue reading.
 
@@ -20,10 +20,10 @@ If you want to run UNC Sandbox on its own, continue reading.
 
 ### With [npm](https://www.npmjs.com/)
 
-    npm i -g unc-sandbox
+    npm i -g uncd-sandbox
 
-Note: If you have trouble downloading binary from IPFS gateway, you can upload a pre-built unc-sandbox tar file to any file storage service and use `SANDBOX_ARTIFACT_URL` environment variable to specify it's base URL.
-e.g. `> SANDBOX_ARTIFACT_URL=https://s3.aws.com/my-binary npm i unc-sandbox`
+Note: If you have trouble downloading binary from IPFS gateway, you can upload a pre-built uncd-sandbox tar file to any file storage service and use `SANDBOX_ARTIFACT_URL` environment variable to specify it's base URL.
+e.g. `> SANDBOX_ARTIFACT_URL=https://s3.aws.com/my-binary npm i uncd-sandbox`
 
 
 ### With Rust
@@ -38,34 +38,34 @@ Coming soon
 
       git clone https://github.com/UNC/UNCcore
 
-* `cd` into your `UNCcore` folder and run `make sandbox`
+* `cd` into your `utility` folder and run `make sandbox`
 
-      cd UNCcore
+      cd utility
       make sandbox
 
 * For ease-of-use, you can copy (or [symlink](https://kb.iu.edu/d/abbe)) the binary to somewhere in your [PATH](https://www.cloudsavvyit.com/1933/what-is-the-unix-path-and-how-do-you-add-programs-to-it/). For example, if you have a `~/bin` folder:
 
-      cp target/debug/unc-sandbox ~/bin/
+      cp target/debug/uncd-sandbox ~/bin/
 
 ## Use
 
 * Initialize the Sandbox node
 
-      unc-sandbox --home /tmp/unc-sandbox init
+      uncd-sandbox --home /tmp/uncd-sandbox init
 
 * Run it
 
-      unc-sandbox --home /tmp/unc-sandbox run
+      uncd-sandbox --home /tmp/uncd-sandbox run
 
 To find out other things you can do:
 
-    unc-sandbox --help
+    uncd-sandbox --help
 
 ## Stop
 
 Once you're finished using the sandbox node you can stop it by using <kbd>Ctrl</kbd><kbd>C</kbd>. To clean up the data it generates:
 
-    rm -rf /tmp/unc-sandbox
+    rm -rf /tmp/uncd-sandbox
 
 # What's special about UNC Sandbox
 

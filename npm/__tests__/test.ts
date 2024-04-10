@@ -1,16 +1,16 @@
 import test from "ava";
 import { join, resolve } from "path";
 import { Binary } from "../src";
-import { AWSUrl } from "../src/getBinary";
+import { CloudFlareUrl } from "../src/getBinary";
 import { fileExists, inherit, rm } from "../src/utils";
 
 process.env['PATH'] = "";
 const isCI = process.env["CI"];
-const name = "unc-sandbox";
+const name = "uncd-sandbox";
 const LOCAL_PATH = Binary.DEFAULT_INSTALL_DIR;
 const LOCAL_BIN_PATH = join(LOCAL_PATH, name);
 const fakeUrl = "https://example.com";
-const realUrl = AWSUrl();
+const realUrl = CloudFlareUrl();
 
 
 

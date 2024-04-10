@@ -58,7 +58,7 @@ fn download_path() -> PathBuf {
     }
 }
 
-/// Returns a path to the binary in the form of {home}/.unc/unc-sandbox-{hash}/unc-sandbox
+/// Returns a path to the binary in the form of {home}/.unc/uncd-sandbox-{hash}/uncd-sandbox
 pub fn bin_path() -> anyhow::Result<PathBuf> {
     if let Ok(path) = std::env::var("UNC_SANDBOX_BIN_PATH") {
         let path = PathBuf::from(path);
@@ -69,7 +69,7 @@ pub fn bin_path() -> anyhow::Result<PathBuf> {
     }
 
     let mut buf = download_path();
-    buf.push("unc-sandbox");
+    buf.push("uncd-sandbox");
 
     Ok(buf)
 }
@@ -79,20 +79,20 @@ pub fn bin_path() -> anyhow::Result<PathBuf> {
 /// will likely not have the binaries made available quite yet.
 pub fn install_with_version(version: &str) -> anyhow::Result<PathBuf> {
     // Download binary into temp dir
-    let tmp_dir = format!("unc-sandbox-{}", Utc::now());
+    let tmp_dir = format!("uncd-sandbox-{}", Utc::now());
     let dl_cache = Cache::at(&download_path());
     let bin_path = bin_url(version)
         .ok_or_else(|| anyhow!("Unsupported platform: only linux-x86 and macos are supported"))?;
     let dl = dl_cache
-        .download(true, &tmp_dir, &["unc-sandbox"], &bin_path)
+        .download(true, &tmp_dir, &["uncd-sandbox"], &bin_path)
         .map_err(anyhow::Error::msg)
-        .with_context(|| "unable to download unc-sandbox")?
-        .ok_or_else(|| anyhow!("Could not install unc-sandbox"))?;
+        .with_context(|| "unable to download uncd-sandbox")?
+        .ok_or_else(|| anyhow!("Could not install uncd-sandbox"))?;
 
-    let path = dl.binary("unc-sandbox").map_err(anyhow::Error::msg)?;
+    let path = dl.binary("uncd-sandbox").map_err(anyhow::Error::msg)?;
 
-    // Move unc-sandbox binary to correct location from temp folder.
-    let dest = download_path().join("unc-sandbox");
+    // Move uncd-sandbox binary to correct location from temp folder.
+    let dest = download_path().join("uncd-sandbox");
     std::fs::rename(path, &dest)?;
 
     Ok(dest)
@@ -155,7 +155,7 @@ pub fn ensure_sandbox_bin_with_version(version: &str) -> anyhow::Result<PathBuf>
     let mut bin_path = bin_path()?;
     if let Some(lockfile) = installable(&bin_path)? {
         bin_path = install_with_version(version)?;
-        println!("Installed unc-sandbox into {}", bin_path.to_str().unwrap());
+        println!("Installed uncd-sandbox into {}", bin_path.to_str().unwrap());
         std::env::set_var("UNC_SANDBOX_BIN_PATH", bin_path.as_os_str());
         lockfile.unlock()?;
     }

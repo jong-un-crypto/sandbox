@@ -1,11 +1,11 @@
 {
-  "name": "unc-sandbox",
+  "name": "uncd-sandbox",
   "version": "0.0.17",
   "description": "CLI tool for testing UNC smart contracts",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "unc-sandbox": "./run.js",
+    "uncd-sandbox": "./run.js",
     "sandbox": "./run.js"
   },
   "repository": "https://github.com/UNC/sandbox",
