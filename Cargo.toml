@@ -1,4 +1,6 @@
 # XXX: This is a workaround for https://github.com/MarcoIeni/release-plz/issues/1004
 # This file should be removed once that issue is resolved
 [workspace]
+resolver = "2"
+
 members = ["crate"]
