@@ -25,13 +25,13 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          tags: ghcr.io/UNC/sandbox:${{ github.sha }}
+          tags: ghcr.io/utnet-org/sandbox:${{ github.sha }}
           load: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
       - name: Push Docker image
-        run: docker push ghcr.io/UNC/sandbox:${{ github.sha }}
+        run: docker push ghcr.io/utnet-org/sandbox:${{ github.sha }}
 
       - name: Push latest Docker image
-        run: docker tag ghcr.io/UNC/sandbox:${{ github.sha }} ghcr.io/UNC/sandbox:latest && docker push ghcr.io/UNC/sandbox:latest
+        run: docker tag ghcr.io/utnet-org/sandbox:${{ github.sha }} ghcr.io/utnet-org/sandbox:latest && docker push ghcr.io/utnet-org/sandbox:latest
